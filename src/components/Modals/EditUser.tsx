@@ -13,7 +13,8 @@ import {
 } from '@chakra-ui/react';
 import { AreaSelector, AreaSelectorStruct } from '@/components/AreaSelector';
 import { TagSelector, TagSelectorStruct } from '../TagSelector';
-import { hobbyTags, identityTags } from '@/pages/register-success';
+import { identityTagKeys, hobbyTagKeys } from '@/data/tags';
+import { useTranslation } from 'next-i18next';
 import { textNormalStyle } from '@/theme/style';
 import api, { GetUserProfileResponse, UserCommunityInfoResponse } from '@/api';
 import { IModalContentProps } from '@/hooks/useModal';
@@ -49,6 +50,7 @@ const tabs = [
 ];
 
 function Index({ data, onClose }: IModalContentProps<Data>) {
+  const { t } = useTranslation();
   const { userProfile } = useUserSelector()
   const [selfIntro, setSelfIntro] = useState(
     data?.userProfile?.selfIntroduction || ''
@@ -57,6 +59,9 @@ function Index({ data, onClose }: IModalContentProps<Data>) {
   const areaSelectorRef = useRef<AreaSelectorStruct>(null);
   const identityTagRef = useRef<TagSelectorStruct>(null);
   const hobbyTagRef = useRef<TagSelectorStruct>(null);
+
+  const identityTags = identityTagKeys.map(key => t(key));
+  const hobbyTags = hobbyTagKeys.map(key => t(key));
 
   const renderSelfIntroduction = () => {
     return (
