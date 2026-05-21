@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 990px;
+}
+
+.inputMd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 16px;
+  background: #ffffff;
+  border: 1px solid #E6E7E9;
+  border-radius: 48px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.input {
+  border: none;
+  outline: none;
+  flex: 1 1 auto;
+  font-size: 14px;
+  color: #333;
+  background: transparent;
+}
+
+.button {
+  background: #13172E;
+  color: #fff;
+  padding: 4px 16px;
+  border-radius: 29px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}

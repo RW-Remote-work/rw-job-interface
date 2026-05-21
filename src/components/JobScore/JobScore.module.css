@@ -1,0 +1,30 @@
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 400px;
+}
+
+.matchDetailsContainer {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* 滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: #e0e0e0 transparent;
+  min-height: 0;
+  overscroll-behavior: contain;
+}
+
+.matchDetailsContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.matchDetailsContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.matchDetailsContainer::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 3px;
+}
