@@ -5,7 +5,10 @@ FROM node:18-alpine AS base
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN npm install -g pnpm && pnpm install --frozen-lockfile
+# 增加国内镜像源加速
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm install -g pnpm && \
+    pnpm install --frozen-lockfile
 
 # 3. 构建阶段
 FROM base AS builder
