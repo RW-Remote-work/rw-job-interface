@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  rw-job-prod:
+    build:
+      context: .
+      args:
+        - SITE_TYPE=JOB
+        - APP_ENV=prod
+    image: rw-job-site:latest
+    container_name: rw-job-prod
+    restart: always
+    ports:
+      - "3002:3002"
+    environment:
+      - NEXT_PUBLIC_SITE_TYPE=JOB
+      - NEXT_PUBLIC_APP_ENV=prod
+      - NODE_ENV=production
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

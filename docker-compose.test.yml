@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  rw-job-test:
+    build:
+      context: .
+      args:
+        - SITE_TYPE=JOB
+        - APP_ENV=test
+    image: rw-job-site:test
+    container_name: rw-job-test
+    restart: always
+    ports:
+      - "3002:3002"
+    environment:
+      - NEXT_PUBLIC_SITE_TYPE=JOB
+      - NEXT_PUBLIC_APP_ENV=test
+      - NODE_ENV=production
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
