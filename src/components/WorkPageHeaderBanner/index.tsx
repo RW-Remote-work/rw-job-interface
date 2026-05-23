@@ -83,15 +83,15 @@ const WorkPageHeaderBanner: React.FC = () => {
         />
       </Box>
 
-      {/* 中间主要内容区域 (x: 126, y: 63, w: 746) */}
+      {/* 中间主要内容区域 (x: 99, y: 63, w: 850) */}
       <Flex
         position="absolute"
-        left="126px"
+        left="99px"
         top="63px"
         direction="column"
         align="center"
         gap="12px"
-        width="746px"
+        width="850px"
       >
         {/* 第一行：岗位统计 */}
         <Flex align="center" gap="4px">
@@ -172,6 +172,7 @@ const WorkPageHeaderBanner: React.FC = () => {
             lineHeight="1.14em"
             letterSpacing={titleLetterSpacing}
             color="#13172E"
+            whiteSpace="nowrap"
           >
             {t("oneStopSubscription")}
           </Text>
@@ -182,6 +183,7 @@ const WorkPageHeaderBanner: React.FC = () => {
             lineHeight="1.14em"
             letterSpacing={titleLetterSpacing}
             color="#13172E"
+            whiteSpace="nowrap"
           >
             {t("globalBestRemoteJobs")}
           </Text>

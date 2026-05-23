@@ -54,7 +54,7 @@ const SimpleHeader = () => {
             color="#54555D"
             _hover={{ color: "#13172E", textDecoration: "none" }}
           >
-            {t("home")}
+            {t("aboutRW")}
           </Link>
         </Flex>
 
