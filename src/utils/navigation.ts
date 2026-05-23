@@ -8,9 +8,10 @@ export type SiteTarget = 'MAIN' | 'JOB';
  * @returns 基础 URL (带协议)
  */
 export const getBaseUrl = (target: SiteTarget) => {
-  const isProd = process.env.NODE_ENV === 'production';
-  // 阿里云环境通常通过 NEXT_PUBLIC_APP_ENV 或 NODE_ENV 区分
-  const isTest = process.env.NEXT_PUBLIC_APP_ENV === 'test' || process.env.NEXT_PUBLIC_NODE_ENV === 'test';
+  // 核心修正：优先使用显式定义的环境变量 APP_ENV
+  const appEnv = process.env.NEXT_PUBLIC_APP_ENV || 'dev';
+  const isProd = appEnv === 'prod';
+  const isTest = appEnv === 'test';
   
   const config = {
     MAIN: {
@@ -25,7 +26,11 @@ export const getBaseUrl = (target: SiteTarget) => {
     }
   };
 
-  const env = isProd ? 'prod' : (isTest ? 'test' : 'dev');
+  // 这里的优先级确保了在 Docker 中设置了 APP_ENV=test 时，能正确返回 test 域名
+  let env: 'prod' | 'test' | 'dev' = 'dev';
+  if (isProd) env = 'prod';
+  else if (isTest) env = 'test';
+  else if (process.env.NODE_ENV === 'production') env = 'prod'; // 兜底逻辑
   
   return config[target][env];
 };
@@ -46,7 +51,6 @@ export const getCrossSiteLink = (target: SiteTarget, path: string) => {
  * @param path 路径
  */
 export const getLink = (target: SiteTarget, path: string) => {
-  // 移除 !isClient() 检查，确保服务端和客户端渲染结果一致
   const currentSite = (process.env.NEXT_PUBLIC_SITE_TYPE as SiteTarget) || 'MAIN';
   
   if (target === currentSite) {
